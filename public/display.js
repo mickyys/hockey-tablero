@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    const timerEndSound = new Audio('sounds/mixkit-bell-ring-buzzer-2962.wav');
+
     // Cargar configuración
     const savedConfig = localStorage.getItem('hockeyScoreboardConfig');
     if (!savedConfig) {
@@ -20,6 +23,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!config.showTimer) {
         document.getElementById('timer-container').classList.add('hidden');
+    }
+
+    const homeHeader = document.getElementById('home-header');
+    const awayHeader = document.getElementById('away-header');
+
+    if (config.homeLogo) {
+        homeHeader.innerHTML = `<img src="${config.homeLogo}" alt="Logo Local" class="team-logo">`;
+    } else {
+        homeHeader.innerHTML = ``;
+    }
+
+    if (config.awayLogo) {
+        awayHeader.innerHTML = `<img src="${config.awayLogo}" alt="Logo Visitante" class="team-logo">`;
+    } else {
+        awayHeader.innerHTML = ``;
     }
 
     // Variables de estado
@@ -72,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     updateTimer();
                 } else {
                     pauseTimer();
-                    // Aquí podrías agregar una alarma o notificación
+                    timerEndSound.play()
                 }
             }, 1000);
         }
@@ -197,3 +215,32 @@ document.addEventListener('keydown', (event) => {
         document.getElementById('start-pause')?.click();
     }
 });
+
+
+let homeFouls = 0;
+let awayFouls = 0;
+
+const homeFoulsEl = document.getElementById('home-fouls');
+const awayFoulsEl = document.getElementById('away-fouls');
+
+document.getElementById('home-foul-plus').addEventListener('click', () => {
+    homeFouls++;
+    homeFoulsEl.textContent = homeFouls;
+});
+
+document.getElementById('home-foul-minus').addEventListener('click', () => {
+    if (homeFouls > 0) homeFouls--;
+    homeFoulsEl.textContent = homeFouls;
+});
+
+document.getElementById('away-foul-plus').addEventListener('click', () => {
+    awayFouls++;
+    awayFoulsEl.textContent = awayFouls;
+});
+
+document.getElementById('away-foul-minus').addEventListener('click', () => {
+    if (awayFouls > 0) awayFouls--;
+    awayFoulsEl.textContent = awayFouls;
+});
+
+

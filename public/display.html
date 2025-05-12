@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,28 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Digital+7&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="scoreboard">
         <div class="team team-home" id="home-team-display">
-            <div class="team-name" id="home-name">LOCAL</div>
+            <div class="team-header" id="home-header"></div>
+            <div class="team-name" id="home-name"></div>
             <div class="team-score" id="home-score">0</div>
             <div class="team-controls">
                 <button class="btn-score" id="home-plus">+</button>
                 <button class="btn-score" id="home-minus">-</button>
             </div>
+            <!-- Faltas equipo local -->
+            <div class="team-fouls">
+                <span>Faltas</span>
+                <div class="fouls-display">
+                    <button class="btn-foul" id="home-foul-minus">-</button>
+                    <span id="home-fouls">0</span>
+                    <button class="btn-foul" id="home-foul-plus">+</button>
+                </div>
+            </div>
         </div>
-        
+
         <div class="timer-container" id="timer-container">
             <div class="timer" id="timer">20:00</div>
             <div class="timer-controls">
@@ -25,27 +37,38 @@
                 <button class="btn-timer" id="reset">REINICIAR</button>
             </div>
             <div class="period" id="period-display">
-                <span>PERIODO:</span>
                 <span id="period">1</span>
-                <button class="btn-period" id="next-period">SIGUIENTE</button>
             </div>
+            <button class="btn-period" id="next-period">SIGUIENTE</button>            
         </div>
-        
+
         <div class="team team-away" id="away-team-display">
-            <div class="team-name" id="away-name">VISITANTE</div>
+            <div class="team-header" id="away-header"></div>
+            <div class="team-name" id="away-name"></div>
             <div class="team-score" id="away-score">0</div>
             <div class="team-controls">
                 <button class="btn-score" id="away-plus">+</button>
                 <button class="btn-score" id="away-minus">-</button>
             </div>
+            <!-- Faltas equipo visitante -->
+            <div class="team-fouls">
+                <span>Faltas</span>
+                <div class="fouls-display">
+                    <button class="btn-foul" id="away-foul-minus">-</button>
+                    <span id="away-fouls">0</span>
+                    <button class="btn-foul" id="away-foul-plus">+</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <div id="controls-container" class="controls-container">
         <a href="index.html" class="btn-config">Ajustes</a>
         <button id="enter-fullscreen" class="btn-fullscreen">Pantalla Completa</button>
-    </div>    
+    </div>
 
     <script src="display.js"></script>
 </body>
+
 </html>

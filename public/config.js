@@ -1,26 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const saveBtn = document.getElementById('save-config');
+
+    saveBtn.addEventListener('click', function () {
+        const homeLogoInput = document.getElementById('home-logo');
+        const awayLogoInput = document.getElementById('away-logo');
     
-    saveBtn.addEventListener('click', function() {
-        // Obtener valores de configuración
-        const config = {
-            homeTeam: document.getElementById('home-team').value,
-            homeColor: document.getElementById('home-color').value,
-            awayTeam: document.getElementById('away-team').value,
-            awayColor: document.getElementById('away-color').value,
-            periodDuration: parseInt(document.getElementById('period-duration').value),
-            totalPeriods: parseInt(document.getElementById('total-periods').value),
-            showPeriod: document.getElementById('show-period').checked,
-            showTimer: document.getElementById('show-timer').checked
+        const readLogo = (input) => {
+            return new Promise((resolve) => {
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    resolve(null);
+                }
+            });
         };
-        
-        // Guardar configuración en localStorage
-        localStorage.setItem('hockeyScoreboardConfig', JSON.stringify(config));
-        
-        // Redirigir a la página de visualización
-        window.location.href = 'display.html';
-    });
     
+        Promise.all([readLogo(homeLogoInput), readLogo(awayLogoInput)]).then(([homeLogo, awayLogo]) => {
+            const config = {
+                homeTeam: document.getElementById('home-team').value,
+                homeColor: document.getElementById('home-color').value,
+                awayTeam: document.getElementById('away-team').value,
+                awayColor: document.getElementById('away-color').value,
+                periodDuration: parseInt(document.getElementById('period-duration').value),
+                totalPeriods: parseInt(document.getElementById('total-periods').value),
+                showPeriod: document.getElementById('show-period').checked,
+                showTimer: document.getElementById('show-timer').checked,
+                homeLogo: homeLogo,
+                awayLogo: awayLogo
+            };
+    
+            localStorage.setItem('hockeyScoreboardConfig', JSON.stringify(config));
+            window.location.href = 'display.html';
+        });
+    });
+
     // Cargar configuración previa si existe
     const savedConfig = localStorage.getItem('hockeyScoreboardConfig');
     if (savedConfig) {
@@ -35,3 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('show-timer').checked = config.showTimer;
     }
 });
+
+
+
+
+
+

@@ -125,7 +125,7 @@ body.hide-cursor {
 
 .team-score {
     font-family: 'Digital 7', sans-serif;
-    font-size: 8rem;
+    font-size: 12rem; /* antes 8rem */
     color: #fff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -155,26 +155,25 @@ body.hide-cursor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    padding: 20px;
-    background-color: #111;
-    color: white;
-    width: 300px;
+    justify-content: center;
+    flex: 2; /* da más espacio vertical en relación a los equipos */
+    padding: 40px;
+    background-color: #000;
+    width: 100%;
 }
 
 .timer {
     font-family: 'Digital 7', sans-serif;
-    font-size: 7rem;
-    color: #ff5555;
-    text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
-    margin: 20px 0;
+    font-size: 15rem; /* mucho más grande */
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
 }
 
 .timer-controls {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .btn-timer {
@@ -193,11 +192,15 @@ body.hide-cursor {
 }
 
 .period {
-    margin-top: 20px;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+    color: #fff;
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 150px;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 15px;
 }
 
 .btn-period {
@@ -209,6 +212,7 @@ body.hide-cursor {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top:50px;
 }
 
 .btn-period:hover {
@@ -275,4 +279,108 @@ body.hide-cursor {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+    .scoreboard {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .team,
+    .timer-container {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .team-score {
+        font-size: 5rem;
+    }
+
+    .team-name {
+        font-size: 2rem;
+    }
+
+    .timer {
+        font-size: 5rem;
+    }
+
+    .btn-score {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .btn-timer {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .period {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn-period {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .controls-container {
+        flex-direction: column;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .btn-config,
+    .btn-fullscreen {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+.team-fouls {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 2.2em;
+    color: white;
+}
+
+.fouls-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.btn-foul {
+    background-color: transparent;
+    border: 0; /* opcional, para que tenga un contorno blanco */
+    color: white;
+    font-size: 1.2em;
+    padding: 4px 4px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-foul:hover {
+    background-color: white;
+    color: black;
+}
+
+.team-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+
+.team-logo {
+    max-height: 240px;
+    max-width: 100%;
+    object-fit: contain;
 }
