@@ -1,13 +1,40 @@
 {
-	"name": "hockey-cloudflare",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev"
-	},
-	"devDependencies": {
-		"wrangler": "^4.14.3"
-	}
+  "name": "hockey-scoreboard",
+  "version": "1.0.0",
+  "description": "A scoreboard for roller hockey",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.example.hockey-scoreboard",
+    "productName": "Hockey Scoreboard",
+    "files": [
+      "public/**/*",
+      "main.js",
+      "preload.js",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
 }

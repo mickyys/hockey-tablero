@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tablero Hockey Patín</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="display.css">
     <link href="https://fonts.googleapis.com/css2?family=Digital+7&display=swap" rel="stylesheet">
 </head>
 
@@ -35,6 +35,7 @@
             <div class="timer-controls">
                 <button class="btn-timer" id="start-pause">INICIAR</button>
                 <button class="btn-timer" id="reset">REINICIAR</button>
+                <button class="btn-timer" id="buzzer">CHICHARRA</button>
             </div>
             <div class="period" id="period-display">
                 <span id="period">1</span>
@@ -64,11 +65,11 @@
     </div>
 
     <div id="controls-container" class="controls-container">
-        <a href="index.html" class="btn-config">Ajustes</a>
-        <button id="enter-fullscreen" class="btn-fullscreen">Pantalla Completa</button>
+        <a href="index.html" class="btn-config fullscreen-hidden">Ajustes</a>
+        <button id="enter-fullscreen" class="btn-fullscreen fullscreen-hidden">Pantalla Completa</button>
     </div>
 
-    <script src="display.js"></script>
+    <script src="dist/display.bundle.js"></script>
 </body>
 
 </html>
