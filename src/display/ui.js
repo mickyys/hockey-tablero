@@ -33,46 +33,26 @@ export function applyConfig() {
 export function initFullscreen() {
     const fullscreenBtn = document.getElementById('enter-fullscreen');
     const controlsContainer = document.getElementById('controls-container');
+    const fullscreenElements = document.querySelectorAll('.fullscreen-hidden');
 
-    fullscreenBtn.addEventListener('click', () => {
-        const docEl = document.documentElement;
-
-        if (docEl.requestFullscreen) {
-            docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullscreen) {
-            docEl.webkitRequestFullscreen();
-        } else if (docEl.msRequestFullscreen) {
-            docEl.msRequestFullscreen();
+    function toggleFullscreen() {
+        if (!state.isFullScreen) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
         }
-    });
-
-    let cursorTimeout;
-
-    function startCursorHideTimer() {
-        clearTimeout(cursorTimeout);
-        document.body.classList.remove('hide-cursor');
-
-        cursorTimeout = setTimeout(() => {
-            if (document.fullscreenElement) {
-                document.body.classList.add('hide-cursor');
-            }
-        }, 5000);
     }
 
-    document.addEventListener('mousemove', () => {
-        if (document.fullscreenElement) {
-            startCursorHideTimer();
-        }
-    });
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
 
     document.addEventListener('fullscreenchange', () => {
-        if (document.fullscreenElement) {
+        state.isFullScreen = !!document.fullscreenElement;
+        if (state.isFullScreen) {
             controlsContainer.style.display = 'none';
-            startCursorHideTimer(); // inicia al entrar a fullscreen
+            fullscreenElements.forEach(el => el.classList.add('hidden'));
         } else {
             controlsContainer.style.display = 'flex';
-            document.body.classList.remove('hide-cursor'); // muestra el cursor al salir
-            clearTimeout(cursorTimeout);
+            fullscreenElements.forEach(el => el.classList.remove('hidden'));
         }
     });
 }

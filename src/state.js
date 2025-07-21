@@ -6,6 +6,9 @@ export const state = {
     period: 1,
     isRunning: false,
     timeLeft: 0,
+    isTimeUp: false,
+    isFullScreen: false,
+    timeoutDuration: 5,
     config: {
         periodDuration: 20,
         totalPeriods: 2,

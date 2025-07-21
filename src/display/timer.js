@@ -10,7 +10,7 @@ function updateTimerDisplay(timerEl) {
 }
 
 export function startTimer(timerEl, startPauseBtn) {
-    if (!state.isRunning) {
+    if (!state.isRunning && !state.isTimeUp) {
         state.isRunning = true;
         startPauseBtn.textContent = 'PAUSA';
         timerInterval = setInterval(() => {
@@ -18,8 +18,13 @@ export function startTimer(timerEl, startPauseBtn) {
                 state.timeLeft--;
                 updateTimerDisplay(timerEl);
             } else {
+                state.isTimeUp = true;
                 pauseTimer(startPauseBtn);
                 timerEndSound.play();
+                setTimeout(() => {
+                    state.isTimeUp = false;
+                    startTimer(timerEl, startPauseBtn);
+                }, state.timeoutDuration * 1000);
             }
         }, 1000);
     }
