@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Display = ({ config }) => {
+const Display = ({ config, onSettingsClick }) => {
     const [homeScore, setHomeScore] = useState(0);
     const [awayScore, setAwayScore] = useState(0);
     const [homeFouls, setHomeFouls] = useState(0);
@@ -33,6 +33,9 @@ const Display = ({ config }) => {
     }, [isRunning, time]);
 
     const formatTime = (seconds) => {
+        if (config.timeFormat === 'seconds') {
+            return seconds;
+        }
         const minutes = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
@@ -56,10 +59,6 @@ const Display = ({ config }) => {
             setPeriod(period + 1);
             handleReset();
         }
-    };
-
-    const enterFullscreen = () => {
-        document.documentElement.requestFullscreen();
     };
 
     const homeLogoURL = config.homeLogo ? URL.createObjectURL(config.homeLogo) : null;
@@ -120,7 +119,7 @@ const Display = ({ config }) => {
                 </div>
             </div>
             <div id="controls-container" className="controls-container">
-                <button id="enter-fullscreen" className="btn-fullscreen fullscreen-hidden" onClick={enterFullscreen}>Pantalla Completa</button>
+                <button id="settings-button" className="btn-settings" onClick={onSettingsClick}>Configuración</button>
             </div>
         </div>
     );

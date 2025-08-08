@@ -11,6 +11,7 @@ const Config = ({ onSave }) => {
     const [totalPeriods, setTotalPeriods] = useState(2);
     const [showPeriod, setShowPeriod] = useState(true);
     const [showTimer, setShowTimer] = useState(true);
+    const [timeFormat, setTimeFormat] = useState('minutes');
 
     const handleSave = () => {
         onSave({
@@ -24,6 +25,7 @@ const Config = ({ onSave }) => {
             totalPeriods,
             showPeriod,
             showTimer,
+            timeFormat,
         });
     };
 
@@ -74,6 +76,13 @@ const Config = ({ onSave }) => {
                         <option value="4">4</option>
                     </select>
                 </div>
+                <div className="input-group">
+                    <label htmlFor="time-format">Formato del Tiempo:</label>
+                    <select id="time-format" value={timeFormat} onChange={(e) => setTimeFormat(e.target.value)}>
+                        <option value="minutes">Minutos y Segundos</option>
+                        <option value="seconds">Solo Segundos</option>
+                    </select>
+                </div>
             </div>
 
             <div className="config-section">
@@ -85,6 +94,15 @@ const Config = ({ onSave }) => {
                 <div className="input-group">
                     <label htmlFor="show-timer">Mostrar Temporizador:</label>
                     <input type="checkbox" id="show-timer" checked={showTimer} onChange={(e) => setShowTimer(e.target.checked)} />
+                </div>
+            </div>
+
+            <div className="config-section">
+                <h2>Logos Disponibles</h2>
+                <div className="logo-gallery">
+                    <img src="logo/camuvi.png" alt="Camuvi" width="50" />
+                    <img src="logo/huachipato.png" alt="Huachipato" width="50" />
+                    <img src="logo/nuevo-pacifico.png" alt="Nuevo Pacifico" width="50" />
                 </div>
             </div>
 
