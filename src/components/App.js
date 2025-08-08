@@ -9,10 +9,14 @@ const App = () => {
         setConfig(newConfig);
     };
 
+    const handleSettingsClick = () => {
+        setConfig(null);
+    };
+
     return (
         <div>
             {config ? (
-                <Display config={config} />
+                <Display config={config} onSettingsClick={handleSettingsClick} />
             ) : (
                 <Config onSave={handleConfigSave} />
             )}
